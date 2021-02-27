@@ -39,6 +39,7 @@ class AutonomoBICCO():
                 cursor.execute(query)
                 result.append(cursor.fetchall())
             print(result)
+            
     def adicionar_feedback(self, id, nota):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
