@@ -1,9 +1,8 @@
-from os import execlp, name
 import sqlite3
 # Falta fazer as querys para filtros de busca / codigo para guardar imagens no portfolio
 # Falta fazer parte de clientes
 
-class DataBaseBICCO():
+class AutonomoBICCO():
     def __init__(self, path) -> None:
         self.db = path
 
@@ -31,14 +30,15 @@ class DataBaseBICCO():
         else:
             print('dados do autonomo alterados com sucesso')
 
-    def monstrar_todos_autonomos(self):
+    def mostrar_todos_autonomos(self):
+        result = []
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
-            query = 'SELECT * FROM Autonomo;'
-            cursor.execute(query)
-            for linha in cursor.fetchall():
-                print(linha)
-    
+            for binary in range (1, -1, -1):
+                query = f'SELECT * FROM Autonomo WHERE plano = {binary} ORDER BY classificacao DESC;'
+                cursor.execute(query)
+                result.append(cursor.fetchall())
+            print(result)
     def adicionar_feedback(self, id, nota):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
@@ -77,15 +77,10 @@ class DataBaseBICCO():
         else:
             print('Autonomo excluindo com sucesso')
 
-if __name__ == '__main__':
-    db = DataBaseBICCO(r'assets\bancopteste.db')
+
     
-    # db.monstrar_todos_autonomos()
-    db.excluir_autonomo(6)
-    # db.monstrar_todos_autonomos()
-    # db.mostrar_autonomo_individual(6)
-    # db.editar_autonomo(3, 'Thiago Galhardo', 'thiagocartola@yahoo.com', 'gols', '11 77777-7777','jogador de futebol',1000,'ex-jogador profissional e treinador')
-    # db.excluir_autonomo(4)
-    # db.cadastrar_autonomo('Thiago','thiaguin22@gmail.com','minecraft','2008-01-15','71777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 0.0)
-    # db.monstrar_todos_autonomos()
-    
+# db.cadastrar_autonomo('Thiago','thiaguin21@gmail.com','minecraft','2008-01-15','71777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 1.0)
+# db.cadastrar_autonomo('Thiago','thiaguin22@gmail.com','minecraft','2008-01-15','72777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 2.0)
+# db.cadastrar_autonomo('Thiago','thiaguin23@gmail.com','minecraft','2008-01-15','73777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 3.0)
+# db.cadastrar_autonomo('Thiago','thiaguin24@gmail.com','minecraft','2008-01-15','74777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 4.0)
+# db.cadastrar_autonomo('Thiago','thiaguin26@gmail.com','minecraft','2008-01-15','76777777777','11 77777-7777', 1, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 0.0)    
