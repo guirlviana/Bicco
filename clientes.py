@@ -29,9 +29,7 @@ class ClienteBICCO():
             print('nao foi possivel alterar dados do cliente')
         else:
             print('dados do cliente alterados com sucesso')
-
-
-        
+      
     def mostrar_cliente_individual(self, id):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
@@ -44,6 +42,19 @@ class ClienteBICCO():
                         print(linha)
             else:
                 print('ID não encontrado')
+    
+    def login(self, email, senha):
+        with sqlite3.connect(self.db, check_same_thread=False) as con:
+            cursor = con.cursor()
+            query = f'SELECT id, Email, Senha FROM cliente WHERE Email = "{email}" AND Senha = "{senha}";'
+            cursor.execute(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:
+                        print(f'LOGADO COM {linha[2]}/{linha[1]} | ID: {linha[0]}')
+            else:
+                print('Login incorreto')
 
     def excluir_cliente(self, id):
         try:
@@ -56,7 +67,7 @@ class ClienteBICCO():
             print('Não foi possivel exluir cliente')
         
         else:
-            print('Cliente excluindo com sucesso')
+            print('Cliente excluido com sucesso')
 
 
     

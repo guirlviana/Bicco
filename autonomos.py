@@ -5,6 +5,19 @@ import sqlite3
 class AutonomoBICCO():
     def __init__(self, path) -> None:
         self.db = path
+    
+    def login(self, email, senha):
+        with sqlite3.connect(self.db, check_same_thread=False) as con:
+            cursor = con.cursor()
+            query = f'SELECT id, Email, Senha FROM autonomo WHERE Email = "{email}" AND Senha = "{senha}";'
+            cursor.execute(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:
+                        print(f'LOGADO COM {linha[2]}/{linha[1]} | ID: {linha[0]}')
+            else:
+                print('Login incorreto')
 
     def cadastrar_autonomo(self, nome, email, senha, datanasc, cpf, tel, plano, categoria, preco, pedidos, descricao, avaliacao):
         try:
@@ -39,7 +52,7 @@ class AutonomoBICCO():
                 cursor.execute(query)
                 result.append(cursor.fetchall())
             print(result)
-            
+
     def adicionar_feedback(self, id, nota):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
