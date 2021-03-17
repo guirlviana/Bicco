@@ -4,11 +4,11 @@ class ClienteBICCO():
     def __init__(self, path) -> None:
         self.db = path
 
-    def cadastrar_cliente(self, nome, email, senha, datanasc, cpf, tel):
+    def cadastrar_cliente(self, nome, email, senha, datanasc, cpf, tel, foto):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO cliente ('Nome','email','senha','DataNasc','CPF','telefone') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}')" 
+                query = f"INSERT INTO cliente ('Nome','email','senha','DataNasc','CPF','telefone', 'Foto') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {foto})" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
@@ -17,11 +17,11 @@ class ClienteBICCO():
         else:
             return {"mensagem": "cliente cadastrado com sucesso"}
     
-    def editar_cliente(self, id, nome, email, senha, tel):
+    def editar_cliente(self, id, nome, email, senha, datanasc, tel, foto):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"UPDATE cliente SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','telefone' = '{tel}' WHERE id = {id};" 
+                query = f"UPDATE cliente SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','telefone' = '{tel}', 'DataNasc' = '{datanasc}', 'Foto'={foto} WHERE id = {id};" 
                 cursor.execute(query)
                 con.commit()
         except Exception:

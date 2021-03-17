@@ -1,0 +1,154 @@
+PARA CADASTRAR AUTONOMO (ENVIAR UM JSON - POST)
+ MODELO
+{
+    "nome": "",
+    "email": "",
+    "senha": "",
+    "datanasc": "",
+    "cpf": "",
+    "tel": "",
+    "foto": 0,
+    "plano": 0,
+    "categoria": "",
+    "preco": 0.0,
+    "pedidos": 0,
+    "descricao": "",
+    "avaliacao": 0.0
+}
+
+EXEMPLO
+
+{
+    "nome": "Postman",
+    "email": "postman@gmail.com",
+    "senha": "manpost",
+    "datanasc": "2000-09-08",
+    "cpf": "12390231",
+    "tel": "22 22222-2222",
+    "foto": 0,
+    "plano": 0,
+    "categoria": "categoria dados",
+    "preco": 20.0,
+    "pedidos": 0,
+    "descricao": "Faço requisições em HTTP",
+    "avaliacao": 0.0
+}
+---------------------------------------------
+
+PARA CADASTRAR CLIENTE (ENVIAR UM JSON - POST)
+ MODELO
+{
+    "nome": "",
+    "email": "",
+    "senha": "",
+    "datanasc": "",
+    "cpf": "",
+    "tel": "",
+    "foto": 0
+}
+
+EXEMPLO
+
+{
+    "nome": "MousePad",
+    "email": "mousebr@gmail.com",
+    "senha": "padpadpad",
+    "datanasc": "1990-02-08",
+    "cpf": "12352341",
+    "tel": "22 22222-2222",
+    "foto": 0
+}
+
+---------------------------------------------
+PARA LOGIN AUTONOMO (ENVIAR UM JSON - POST)
+{
+    "email": "",
+    "senha": ""
+}
+
+EXEMPLO
+{
+    "email": "postman@gmail.com",
+    "senha": "manpost"
+}
+
+---------------------------------------------
+
+PARA LOGIN CLIENTE (ENVIAR UM JSON - POST)
+{
+    "email": "",
+    "senha": ""
+}
+
+EXEMPLO
+
+{
+    "email": "mousebr@gmail.com",
+    "senha": "padpadpad"
+}
+
+---------------------------------------------
+
+PARA EDITAR AUTONOMO (ENVIAR UM JSON - POST)
+
+
+{
+    "id": 0,	
+    "nome": "",
+    "email": "",
+    "senha": "",
+    "datanasc": "",
+    "tel": "",
+    "foto": 0,
+    "preco": 0.0,
+    "pedidos": 0,
+    "descricao": "",
+    "categoria": ""
+}
+
+EXEMPLO
+
+{
+    "id": 19,	
+    "nome": "Postman 2",
+    "email": "postman@hotmail.com",
+    "senha": "manpost123",
+    "datanasc": "2000-09-08",
+    "tel": "22 22222-2222",
+    "foto": 0,
+    "preco": 25.0,
+    "pedidos": 0,
+    "descricao": "Faço requisições em HTTP",
+    "categoria": "categoria dados"
+}
+
+---------------------------------------------
+
+PARA EDITAR CLIENTE (ENVIAR UM JSON - POST)
+
+{
+    "id": 0,	
+    "nome": "",
+    "email": "",
+    "senha": "",
+    "datanasc": "",
+    "tel": "",
+    "foto": 0
+}
+
+EXEMPLO
+
+
+{
+    "id": 4,	
+    "nome": "MousePad 2",
+    "email": "mousebr@yahoo.com",
+    "senha": "pad3x",
+    "datanasc": "1990-02-08",
+    "tel": "22 22222-2222",
+    "foto": 0
+}
+
+
+
+

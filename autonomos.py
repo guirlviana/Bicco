@@ -22,7 +22,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone', 'Foto', Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
+                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone','Foto', 'Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
@@ -32,11 +32,11 @@ class AutonomoBICCO():
             return {"mensagem": "autonomo cadastrado com sucesso"}
             
     
-    def editar_autonomo(self, id, nome, email, senha, tel, preco, descricao):
+    def editar_autonomo(self, id, nome, email, senha, datanasc, tel, foto, categoria, preco, descricao):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"UPDATE autonomo SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','telefone' = '{tel}','ValorHora' = {preco}, 'Descricao'= '{descricao}' WHERE id = {id};" 
+                query = f"UPDATE autonomo SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','DataNasc' = '{datanasc}','telefone' = '{tel}', 'Foto' = {foto} ,'categoria' = '{categoria}','ValorHora' = {preco}, 'Descricao'= '{descricao}' WHERE id = {id};" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
