@@ -94,6 +94,18 @@ def ver_cliente():
     response = dbCliente.mostrar_cliente_individual(data['id'])
     return jsonify(response)
 
+# VISUALIZAR - TODOS AUTONOMOS
+
+@app.route("/ver/todos", methods=['GET'])
+def ver_todos():
+    response = dbAutonomo.mostrar_todos_autonomos()
+    return jsonify(response)
+
+@app.route("/avaliacao/adicionar", methods=['POST'])
+def adicionar_avaliacao():
+    data = request.get_json()
+    response = dbAutonomo.adicionar_feedback(id=data['id'],nota=data['nota'])
+    return jsonify(response)
 
 
 if __name__ == "__main__":
@@ -113,18 +125,19 @@ if __name__ == "__main__":
 # /login/cliente OK
 
 # /editar/autonomo OK
-# /editar/<int:id>/cliente OK
+# /editar/cliente OK
 
 # /deletar/autonomo OK
 # /deletar/cliente OK
 
 # /ver/autonomo OK 
 # /ver/cliente OK 
+# /ver/todos OK
+
+# /avaliacao/adicionar OK
 
 # /portfolio/<int:id>
 # /portfolio/<int:id>/adicionar
 # /portfolio/<int:id>/editar
 # /portfolio/<int:id>/deletar
 
-# /avaliacao/<int:id>/adicionar
-# /avaliacao/<int:id>/media

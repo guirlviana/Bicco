@@ -141,11 +141,3 @@ class AutonomoBICCO():
         else:
             return {"mensagem": "autonomo excluindo com sucesso"}
             
-
-
-    
-# db.cadastrar_autonomo('Thiago','thiaguin21@gmail.com','minecraft','2008-01-15','71777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 1.0)
-# db.cadastrar_autonomo('Thiago','thiaguin22@gmail.com','minecraft','2008-01-15','72777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 2.0)
-# db.cadastrar_autonomo('Thiago','thiaguin23@gmail.com','minecraft','2008-01-15','73777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 3.0)
-# db.cadastrar_autonomo('Thiago','thiaguin24@gmail.com','minecraft','2008-01-15','74777777777','11 77777-7777', 0, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 4.0)
-# db.cadastrar_autonomo('Thiago','thiaguin26@gmail.com','minecraft','2008-01-15','76777777777','11 77777-7777', 1, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 0.0)    

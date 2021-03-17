@@ -176,6 +176,58 @@ EXEMPLO
     "id": 1
 }
 
+---------------------------------------------
+
+PARA VER DADOS DE UM AUTONOMO (ENVIAR UM JSON - POST)
+
+{
+    "id": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1
+}
+
+---------------------------------------------
+
+PARA VER DADOS DE UM CLIENTE (ENVIAR UM JSON - POST)
+
+{
+    "id": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1
+}
+
+---------------------------------------------
+PARA ADICIONAR AVALIAÇÂO (ENVIAR UM JSON - POST)
+
+{
+    "id": 0,
+    "nota": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+    "nota": 10
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
