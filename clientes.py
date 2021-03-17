@@ -1,6 +1,4 @@
 import sqlite3
-# Falta fazer as querys para filtros de busca / codigo para guardar imagens no portfolio
-# Falta fazer parte de clientes
 
 class ClienteBICCO():
     def __init__(self, path) -> None:
@@ -14,9 +12,10 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            print('nao foi possivel cadastrar cliente')
+            return {"mensagem": "nao foi possivel cadastrar cliente"}
+            
         else:
-            print('cliente cadastrado com sucesso')
+            return {"mensagem": "cliente cadastrado com sucesso"}
     
     def editar_cliente(self, id, nome, email, senha, tel):
         try:
@@ -26,9 +25,10 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            print('nao foi possivel alterar dados do cliente')
+            return {"mensagem": "nao foi possivel alterar dados do cliente"}            
         else:
-            print('dados do cliente alterados com sucesso')
+            return {"mensagem": "dados do cliente alterados com sucesso"}
+            
       
     def mostrar_cliente_individual(self, id):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
@@ -39,9 +39,32 @@ class ClienteBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        print(linha)
+                        return {
+                            "acesso": True,
+                            "id": linha[0],
+                            "nome": linha[1],
+                            "email": linha[2],
+                            "senha": linha[3],
+                            "dataNasc": linha[4],
+                            "cpf": linha[5],
+                            "tel": linha[6],
+                            "foto": linha[7],
+                            "plano": linha[8],
+                        }
             else:
-                print('ID não encontrado')
+                return {
+                    "acesso": False,
+                    "id": None,
+                    "nome": None,
+                    "email": None,
+                    "senha": None,
+                    "dataNasc": None,
+                    "cpf": None,
+                    "tel": None,
+                    "foto": None,
+                    "plano": None,
+                }
+                
     
     def login(self, email, senha):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
@@ -52,9 +75,10 @@ class ClienteBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        print(f'LOGADO COM {linha[2]}/{linha[1]} | ID: {linha[0]}')
+                        return {"acesso": True, "email": f"{linha[1]}", "senha": f"{linha[2]}", "ID": linha[0]}
+                        
             else:
-                print('Login incorreto')
+                return {"acesso": False, "email": "", "senha": "", "ID": 0}
 
     def excluir_cliente(self, id):
         try:
@@ -64,10 +88,11 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            print('Não foi possivel exluir cliente')
+            return {"mensagem": "Não foi possivel exluir cliente"}
+            
         
         else:
-            print('Cliente excluido com sucesso')
-
+            return {"mensagem": "cliente excluido com sucesso"}
+            
 
     

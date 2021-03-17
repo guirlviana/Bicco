@@ -1,6 +1,5 @@
 import sqlite3
-# Falta fazer as querys para filtros de busca / codigo para guardar imagens no portfolio
-# Falta fazer parte de clientes
+
 
 class AutonomoBICCO():
     def __init__(self, path) -> None:
@@ -15,21 +14,23 @@ class AutonomoBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        print(f'LOGADO COM {linha[2]}/{linha[1]} | ID: {linha[0]}')
+                        return {"acesso": True, "email": f"{linha[1]}", "senha": f"{linha[2]}", "ID": linha[0]}
             else:
-                print('Login incorreto')
+                return {"acesso": False, "email": "", "senha": "", "ID": 0}
 
-    def cadastrar_autonomo(self, nome, email, senha, datanasc, cpf, tel, plano, categoria, preco, pedidos, descricao, avaliacao):
+    def cadastrar_autonomo(self, nome, email, senha, datanasc, cpf, tel, foto, plano, categoria, preco, pedidos, descricao, avaliacao):
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone','Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
+                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone', 'Foto', Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            print('nao foi possivel cadastrar autonomo')
+            return {"mensagem": "nao foi possivel cadastrar autonomo"}
+            
         else:
-            print('autonomo cadastrado com sucesso')
+            return {"mensagem": "autonomo cadastrado com sucesso"}
+            
     
     def editar_autonomo(self, id, nome, email, senha, tel, preco, descricao):
         try:
@@ -39,19 +40,44 @@ class AutonomoBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            print('nao foi possivel alterar dados do autonomo')
+            return {"mensagem": "nao foi possivel alterar dados do autonomo"}
+            
         else:
-            print('dados do autonomo alterados com sucesso')
+            return {"mensagem": "dados do autonomo alterados com sucesso"}
+            
 
     def mostrar_todos_autonomos(self):
         result = []
+        store_user = []
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
             for binary in range (1, -1, -1):
                 query = f'SELECT * FROM Autonomo WHERE plano = {binary} ORDER BY classificacao DESC;'
                 cursor.execute(query)
-                result.append(cursor.fetchall())
-            print(result)
+                for user in cursor.fetchall():
+                        # (1, 'editor de video', 34.0, 0, 'edito qualquer tipo de video', 0.0)
+                        data = {
+                            "id": user[0],
+                            "nome": user[1],
+                            "email": user[2],
+                            "senha": user[3],
+                            "dataNasc": user[4],
+                            "cpf": user[5],
+                            "tel": user[6],
+                            "foto": user[7],
+                            "plano": user[8],
+                            "categoria": user[9],
+                            "valorHora": user[10],
+                            "pedidos": user[11],
+                            "descricao": user[12],
+                            "avaliação": user[13]
+                        }
+                        store_user.append(data.copy())
+                result.append(store_user.copy())
+                store_user.clear()
+            return {"pago": result[0], "gratuito": result[1]}
+            
+            
 
     def adicionar_feedback(self, id, nota):
         try:
@@ -60,10 +86,12 @@ class AutonomoBICCO():
                 query = f"INSERT INTO classificacao VALUES ({id}, {nota});UPDATE autonomo set Classificacao = (SELECT avg(nota) FROM classificacao WHERE id_usuario = {id}) WHERE id = {id}; UPDATE autonomo SET Pedidos = (SELECT count({id}) FROM Classificacao WHERE id_usuario = {id})"
                 cursor.executescript(query)
                 con.commit()
-        except Exception as erro:
-            print('nao foi possivel cadastrar avaliacao ao perfil do autonomo', erro)
+        except Exception:
+            return {"mensagem": "nao foi possivel cadastrar avaliacao ao perfil do autonomo"}
+            
         else:
-            print('avaliacao ao perfil do autonomo cadastrada com sucesso')
+            return {"mensagem": "avaliacao ao perfil do autonomo cadastrada com sucesso"}
+            
         
     def mostrar_autonomo_individual(self, id):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
@@ -74,9 +102,31 @@ class AutonomoBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        print(linha)
+                        return {
+                            "acesso": True,
+                            "id": linha[0],
+                            "nome": linha[1],
+                            "email": linha[2],
+                            "senha": linha[3],
+                            "dataNasc": linha[4],
+                            "cpf": linha[5],
+                            "tel": linha[6],
+                            "foto": linha[7],
+                            "plano": linha[8],
+                        }
             else:
-                print('ID não encontrado')
+                return {
+                    "acesso": False,
+                    "id": None,
+                    "nome": None,
+                    "email": None,
+                    "senha": None,
+                    "dataNasc": None,
+                    "cpf": None,
+                    "tel": None,
+                    "foto": None,
+                    "plano": None,
+                }
 
     def excluir_autonomo(self, id):
         try:
@@ -86,10 +136,11 @@ class AutonomoBICCO():
                 cursor.executescript(query)
                 con.commit()
         except Exception:
-            print('Não foi possivel exluir autonomo')
-        
+            return {"mensagem": "nao foi possivel exluir autonomo"}
+            
         else:
-            print('Autonomo excluindo com sucesso')
+            return {"mensagem": "autonomo excluindo com sucesso"}
+            
 
 
     
