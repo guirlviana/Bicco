@@ -149,6 +149,55 @@ EXEMPLO
     "foto": 0
 }
 
+---------------------------------------------
+
+PARA EXCLUIR UM AUTONOMO (ENVIAR UM JSON - DELETE)
+
+{
+    "id": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1
+}
+---------------------------------------------
+
+PARA EXCLUIR UM CLIENTE (ENVIAR UM JSON - DELETE)
+
+{
+    "id": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

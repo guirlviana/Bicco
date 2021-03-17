@@ -67,18 +67,35 @@ def editar_cliente():
     return jsonify(response)
 
 # DELETAR
+
 @app.route("/deletar/autonomo",methods=['DELETE'])
 def deletar_autonomo():
     data = request.get_json()
-    response = 1
+    response = dbAutonomo.excluir_autonomo(data['id'])
     return jsonify(response)
 
 @app.route("/deletar/cliente",methods=['DELETE'])
 def deletar_cliente():
     data = request.get_json()
-    response = 1
+    response = dbCliente.excluir_cliente(data['id'])
     return jsonify(response)
-    
+
+# VISUALIZAR
+
+@app.route("/ver/autonomo",methods=['POST'])
+def ver_autonomo():
+    data = request.get_json()
+    response = dbAutonomo.mostrar_autonomo_individual(data['id'])
+    return jsonify(response)
+
+@app.route("/ver/cliente",methods=['POST'])
+def ver_cliente():
+    data = request.get_json()
+    response = dbCliente.mostrar_cliente_individual(data['id'])
+    return jsonify(response)
+
+
+
 if __name__ == "__main__":
     dbAutonomo = AutonomoBICCO(path=pathbd)
     dbCliente = ClienteBICCO(path=pathbd)
@@ -98,8 +115,11 @@ if __name__ == "__main__":
 # /editar/autonomo OK
 # /editar/<int:id>/cliente OK
 
-# /deletar/<int:id>/autonomo
-# /deletar/<int:id>/cliente
+# /deletar/autonomo OK
+# /deletar/cliente OK
+
+# /ver/autonomo OK 
+# /ver/cliente OK 
 
 # /portfolio/<int:id>
 # /portfolio/<int:id>/adicionar
