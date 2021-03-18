@@ -107,6 +107,32 @@ def adicionar_avaliacao():
     response = dbAutonomo.adicionar_feedback(id=data['id'],nota=data['nota'])
     return jsonify(response)
 
+# PORTFOLIO
+
+@app.route("/portfolio/contar", methods=['POST'])
+def portfolio_contar():
+    data = request.get_json()
+    response = dbAutonomo.contar_imagens_portfolio(data['id'])
+    return jsonify(response)
+
+@app.route("/portfolio/ver", methods=['POST'])
+def portfolio_ver():
+    data = request.get_json()
+    response = dbAutonomo.mostrar_todas_fotos(data['id'])
+    
+    return jsonify(response)
+
+@app.route("/portfolio/adicionar", methods=['POST'])
+def portfolio_adicionar():
+    data = request.get_json()
+    response = dbAutonomo.adicionar_portfolio(id=data['id'], foto=data['foto'])
+    return jsonify(response)
+
+@app.route("/portfolio/deletar", methods=['DELETE'])
+def portfolio_deletar():
+    data = request.get_json()
+    response = dbAutonomo.deletar_portfolio(id=data['id'], foto=data['foto'])
+    return jsonify(response)
 
 if __name__ == "__main__":
     dbAutonomo = AutonomoBICCO(path=pathbd)
@@ -136,8 +162,7 @@ if __name__ == "__main__":
 
 # /avaliacao/adicionar OK
 
-# /portfolio/<int:id>
-# /portfolio/<int:id>/adicionar
-# /portfolio/<int:id>/editar
-# /portfolio/<int:id>/deletar
-
+# /portfolio/contar OK
+# /portfolio/adicionar OK
+# /portfolio/deletar OK
+# /portfolio/ver

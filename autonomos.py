@@ -92,7 +92,62 @@ class AutonomoBICCO():
         else:
             return {"mensagem": "avaliacao ao perfil do autonomo cadastrada com sucesso"}
             
+    def adicionar_portfolio(self, id, foto):
+        try:
+            with sqlite3.connect(self.db, check_same_thread=False) as con:
+                cursor = con.cursor()
+                query = f"INSERT INTO Portfolio VALUES ({id}, {foto});"
+                cursor.executescript(query)
+                con.commit()
+        except Exception:
+            return {"mensagem": "nao foi possivel adicionar foto"}
+            
+        else:
+            return {"mensagem": "foto adicionada com sucesso"}
         
+    def deletar_portfolio(self, id, foto):
+        try:
+            with sqlite3.connect(self.db, check_same_thread=False) as con:
+                cursor = con.cursor()
+                query = f"DELETE FROM portfolio WHERE foto = {foto} AND id_usuario = {id};"
+                cursor.executescript(query)
+                con.commit()
+        except Exception:
+            return {"mensagem": "nao foi possivel deletar foto"}
+            
+        else:
+            return {"mensagem": "foto deletada com sucesso"}
+    
+    def contar_imagens_portfolio(self, id_usuario):
+        with sqlite3.connect(self.db, check_same_thread=False) as con:
+            cursor = con.cursor()
+            query = f"SELECT COUNT(id_usuario) FROM portfolio WHERE id_usuario = {id_usuario};"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:
+                        return {"total": linha[0]}
+
+            else:
+                return {"total": None}
+    
+    def mostrar_todas_fotos(self, id):
+        photos = []
+        with sqlite3.connect(self.db, check_same_thread=False) as con:
+            cursor = con.cursor()
+            query = f"SELECT foto FROM portfolio WHERE id_usuario = {id};"
+            cursor.execute(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:
+                        photos.append(linha[0])
+                return {"fotos": photos}
+
+            else:
+                return {"fotos": None}
+
     def mostrar_autonomo_individual(self, id):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
@@ -132,7 +187,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f'DELETE FROM Autonomo WHERE id = {id}; DELETE FROM Classificacao WHERE id_usuario = {id};'
+                query = f'DELETE FROM Autonomo WHERE id = {id}; DELETE FROM Classificacao WHERE id_usuario = {id}; ; DELETE FROM Portfolio WHERE id_usuario = {id};'
                 cursor.executescript(query)
                 con.commit()
         except Exception:
