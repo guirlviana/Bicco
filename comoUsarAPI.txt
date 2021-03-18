@@ -30,7 +30,7 @@ EXEMPLO
     "categoria": "categoria dados",
     "preco": 20.0,
     "pedidos": 0,
-    "descricao": "Faço requisições em HTTP",
+    "descricao": "Faï¿½o requisiï¿½ï¿½es em HTTP",
     "avaliacao": 0.0
 }
 ---------------------------------------------
@@ -118,7 +118,7 @@ EXEMPLO
     "foto": 0,
     "preco": 25.0,
     "pedidos": 0,
-    "descricao": "Faço requisições em HTTP",
+    "descricao": "Faï¿½o requisiï¿½ï¿½es em HTTP",
     "categoria": "categoria dados"
 }
 
@@ -192,6 +192,11 @@ EXEMPLO
 
 ---------------------------------------------
 
+PARA VER DADOS DE *TODOS* AUTONOMO (ENVIAR UM JSON - GET)
+
+
+---------------------------------------------
+
 PARA VER DADOS DE UM CLIENTE (ENVIAR UM JSON - POST)
 
 {
@@ -205,7 +210,7 @@ EXEMPLO
 }
 
 ---------------------------------------------
-PARA ADICIONAR AVALIAÇÂO (ENVIAR UM JSON - POST)
+PARA ADICIONAR AVALIAï¿½ï¿½O (ENVIAR UM JSON - POST)
 
 {
     "id": 0,
@@ -219,14 +224,95 @@ EXEMPLO
     "nota": 10
 }
 
+---------------------------------------------
+
+PARA VER O NUMERO DE FOTOS NO PORTFOLIO DO AUTONOMO (ENVIAR UM JSON - POST)
+
+{
+    "id": 0,
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+}
+
+---------------------------------------------
+
+PARA ADICIONAR FOTOS AO PORTFOLIO DO AUTONOMO (ENVIAR UM JSON - POST)
 
 
+{
+    "id": 0,
+    "foto": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+    "foto": 10001
+}
+
+---------------------------------------------
+
+PARA DELETAR FOTOS DO PORTFOLIO DO AUTONOMO (ENVIAR UM JSON - POST)
 
 
+{
+    "id": 0,
+    "foto": 0
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+    "foto": 10001
+}
+
+---------------------------------------------
+
+PARA VER TODAS FOTOS DO PORTFOLIO DO AUTONOMO (ENVIAR UM JSON - POST)
 
 
+{
+    "id": 0,
+}
 
+EXEMPLO
 
+{
+    "id": 1,
+}
+
+---------------------------------------------
+
+ROTAS DA API BICCO
+
+# /cadastrar/autonomo 
+# /cadastrar/cliente 
+
+# /login/autonomo  
+# /login/cliente 
+
+# /editar/autonomo 
+# /editar/cliente 
+
+# /deletar/autonomo 
+# /deletar/cliente 
+
+# /ver/autonomo  
+# /ver/cliente  
+# /ver/todos 
+
+# /avaliacao/adicionar 
+
+# /portfolio/contar 
+# /portfolio/adicionar 
+# /portfolio/deletar 
+# /portfolio/ver 
 
 
 

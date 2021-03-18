@@ -3,10 +3,11 @@ from flask.globals import request
 from autonomos import AutonomoBICCO
 from clientes import ClienteBICCO
 import os
+import getDataBase
 
-
-pathbd = r'assets\bancopteste.db'
+pathbd = getDataBase.get_data_base()
 app = Flask(__name__)
+
 # CADASTROS 
 
 @app.route("/cadastrar/autonomo", methods=['POST'])
@@ -137,32 +138,5 @@ def portfolio_deletar():
 if __name__ == "__main__":
     dbAutonomo = AutonomoBICCO(path=pathbd)
     dbCliente = ClienteBICCO(path=pathbd)
-    # port = int(os.environ.get("PORT", 5000))
-    port = 5000
-    app.run(host='localhost', port=port,debug=True)
-
-
-# WEBSERVICES
-
-# /cadastrar/autonomo OK
-# /cadastrar/cliente OK
-
-# /login/autonomo OK 
-# /login/cliente OK
-
-# /editar/autonomo OK
-# /editar/cliente OK
-
-# /deletar/autonomo OK
-# /deletar/cliente OK
-
-# /ver/autonomo OK 
-# /ver/cliente OK 
-# /ver/todos OK
-
-# /avaliacao/adicionar OK
-
-# /portfolio/contar OK
-# /portfolio/adicionar OK
-# /portfolio/deletar OK
-# /portfolio/ver
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
