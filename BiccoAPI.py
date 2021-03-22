@@ -5,9 +5,10 @@ from clientes import ClienteBICCO
 import os
 import getDataBase
 
-pathbd = getDataBase.get_data_base()
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+pathbd = getDataBase.get_data_base()
 # CADASTROS 
 
 @app.route("/cadastrar/autonomo", methods=['POST'])
@@ -136,7 +137,8 @@ def portfolio_deletar():
     return jsonify(response)
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    
     dbAutonomo = AutonomoBICCO(path=pathbd)
     dbCliente = ClienteBICCO(path=pathbd)
-    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
