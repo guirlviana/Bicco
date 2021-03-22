@@ -3,12 +3,12 @@ from flask.globals import request
 from autonomos import AutonomoBICCO
 from clientes import ClienteBICCO
 import os
-import getDataBase
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-pathbd = getDataBase.get_data_base()
+pathbd = os.path.join(os.getcwd(), 'biccodb.db')
 # CADASTROS 
 
 @app.route("/cadastrar/autonomo", methods=['POST'])
