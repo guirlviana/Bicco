@@ -11,7 +11,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy(app)  # Instancia o sqlalchemy usando as configurações acima
-# db: SQLAlchemy
+db: SQLAlchemy
 
 class Cliente(db.Model):
     __tablename__ = 'cliente'
