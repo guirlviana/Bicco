@@ -8,10 +8,10 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://qxbazulxnsppso:d1ea93932f699a54e2b0ecf413b9309191c5b4dec83b7f5c983dc347b038e179@ec2-18-233-83-165.compute-1.amazonaws.com:5432/d4em91gppr7mcf'
 
 db = SQLAlchemy(app)  # Instancia o sqlalchemy usando as configurações acima
-db: SQLAlchemy
+
 
 class Cliente(db.Model):
     __tablename__ = 'cliente'
@@ -60,7 +60,7 @@ class Classificacao(db.Model):
     id_usuario = db.Column(db.Integer)
     nota = db.Column(db.Numeric(precision=10, scale=2))
 
-
+db.drop_all()
 db.create_all()
 
 # postgresql://qxbazulxnsppso:d1ea93932f699a54e2b0ecf413b9309191c5b4dec83b7f5c983dc347b038e179@ec2-18-233-83-165.compute-1.amazonaws.com:5432/d4em91gppr7mcf
