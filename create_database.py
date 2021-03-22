@@ -60,5 +60,5 @@ class Classificacao(db.Model):
     id_usuario = db.Column(db.Integer)
     nota = db.Column(db.Numeric(precision=10, scale=2))
 
-db.drop_all()
+
 db.create_all()
