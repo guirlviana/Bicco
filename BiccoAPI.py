@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask.globals import request
+from flask_sqlalchemy import SQLAlchemy
 from autonomos import AutonomoBICCO
 from clientes import ClienteBICCO
 import os
