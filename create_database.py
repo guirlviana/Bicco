@@ -24,7 +24,7 @@ class Cliente(db.Model):
     cpf = db.Column(db.String, unique=True)
     telefone = db.Column(db.String)
     foto = db.Column(db.LargeBinary)
-    plano = db.Column(db.Integer)
+    
     
 
 
@@ -41,10 +41,10 @@ class Autonomo(db.Model):
     foto = db.Column(db.LargeBinary)
     plano = db.Column(db.Integer)
     categoria = db.Column(db.String)
-    valorhora = db.Column(db.Numeric(precision=10, scale=2))
+    valorhora = db.Column(db.Float)
     pedidos = db.Column(db.Integer)
     descricao = db.Column(db.String)
-    classificacao = db.Column(db.Numeric(precision=10, scale=2))
+    classificacao = db.Column(db.Float)
 
 class Portfolio(db.Model):
     __tablename__ = 'portfolio'
@@ -58,9 +58,8 @@ class Classificacao(db.Model):
     classificacao_id = db.Column(db.Integer, db.Sequence(
         'classificacao_id_auto_incremento', start=1), primary_key=True)
     id_usuario = db.Column(db.Integer)
-    nota = db.Column(db.Numeric(precision=10, scale=2))
+    nota = db.Column(db.Float)
 
 db.drop_all()
 db.create_all()
-
 # postgresql://qxbazulxnsppso:d1ea93932f699a54e2b0ecf413b9309191c5b4dec83b7f5c983dc347b038e179@ec2-18-233-83-165.compute-1.amazonaws.com:5432/d4em91gppr7mcf
