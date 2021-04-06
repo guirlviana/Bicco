@@ -21,7 +21,6 @@ def cadastrar_autonomo():
         email = str(data['email'])
         senha = str(data['senha'] )
         datanasc =  datetime.strptime(data['datanasc'], '%Y-%m-%dT%H:%M:%S')
-        # datanasc = datanasc.date()
         cpf = str(data['cpf'])
         tel = str(data['tel'] )
         foto = data['foto']
