@@ -21,7 +21,7 @@ def cadastrar_autonomo():
         email = str(data['email'])
         senha = str(data['senha'] )
         datanasc =  datetime.strptime(data['datanasc'], '%Y-%m-%d')
-        datanasc = str(datanasc.date())
+        datanasc = datanasc.date()
         cpf = str(data['cpf'])
         tel = str(data['tel'] )
         foto = data['foto']
@@ -31,7 +31,7 @@ def cadastrar_autonomo():
         pedidos = data['pedidos'] 
         descricao = str(data['descricao'] )
         avaliacao = data['avaliacao']
-        query = f"INSERT INTO autonomo VALUES ('" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + foto + "," + plano + ", '" + str(categoria) + "', " + preco + ", " + pedidos + ", '" + str(descricao) + "'," + avaliacao + ")" 
+        query = f"INSERT INTO autonomo VALUES ('" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + datanasc + ", '" + str(cpf) + "', '" + str(tel) + "', " + foto + "," + plano + ", '" + str(categoria) + "', " + preco + ", " + pedidos + ", '" + str(descricao) + "'," + avaliacao + ")" 
         db.session.execute(query)
         db.commit()
     except Exception as erro:
