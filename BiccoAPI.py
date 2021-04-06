@@ -20,7 +20,8 @@ def cadastrar_autonomo():
         nome = str(data['nome'] )
         email = str(data['email'])
         senha = str(data['senha'] )
-        datanasc =  datetime.strptime(data['datanasc'], '%Y-%m-%dT%H:%M:%S')
+        # datanasc =  datetime.strptime(data['datanasc'], '%Y-%m-%dT%H:%M:%S')
+        datanasc = data['datanasc']
         cpf = str(data['cpf'])
         tel = str(data['tel'] )
         foto = data['foto']
