@@ -35,7 +35,8 @@ def cadastrar_autonomo():
         db.session.execute(query)
         db.commit()
     except Exception as erro:
-        response = {"mensagem": "nao foi possivel cadastrar autonomo", "erro": erro}
+        print(erro)
+        response = {"mensagem": "nao foi possivel cadastrar autonomo"}
     
     else:
         response = {"mensagem": "autonomo cadastrado com sucesso"}
