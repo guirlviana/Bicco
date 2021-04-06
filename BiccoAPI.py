@@ -17,19 +17,19 @@ db: SQLAlchemy
 def cadastrar_autonomo():
     data = request.get_json()
     try:
-        nome = data['nome'] 
-        email = data['email']
-        senha = data['senha'] 
+        nome = str(data['nome'] )
+        email = str(data['email'])
+        senha = str(data['senha'] )
         datanasc =  datetime.strptime(data['datanasc'], '%Y-%m-%d')
-        datanasc = datanasc.date()
-        cpf = data['cpf']
-        tel = data['tel'] 
+        datanasc = str(datanasc.date())
+        cpf = str(data['cpf'])
+        tel = str(data['tel'] )
         foto = data['foto']
         plano = data['plano'] 
-        categoria = data['categoria'] 
+        categoria = str(data['categoria'] )
         preco = data['preco'] 
         pedidos = data['pedidos'] 
-        descricao = data['descricao'] 
+        descricao = str(data['descricao'] )
         avaliacao = data['avaliacao']
         query = f"INSERT INTO autonomo VALUES ('{nome}', '{email}', '{senha}', {datanasc}, '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
         db.session.execute(query)
