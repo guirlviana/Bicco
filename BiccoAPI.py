@@ -34,8 +34,8 @@ def cadastrar_autonomo():
         query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone','Foto', 'Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', {datanasc}, '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
         db.session.execute(query)
         db.commit()
-    except Exception:
-        response = {"mensagem": "nao foi possivel cadastrar autonomo"}
+    except Exception as erro:
+        response = {"mensagem": "nao foi possivel cadastrar autonomo", "erro": erro}
     
     else:
         response = {"mensagem": "autonomo cadastrado com sucesso"}
