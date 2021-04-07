@@ -23,7 +23,7 @@ def cadastrar_autonomo():
         datanasc =  str(data['datanasc'])
         cpf = str(data['cpf'])
         tel = str(data['tel'] )
-        foto = bytes([data['foto']])[1:]
+        foto = bytes([data['foto']])
         
         plano = data['plano'] 
         categoria = str(data['categoria'] )
