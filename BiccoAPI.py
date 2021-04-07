@@ -30,7 +30,7 @@ def cadastrar_autonomo():
         pedidos = data['pedidos'] 
         descricao = str(data['descricao'] ) # INSERT INTO TABELA VALUES ({nome}, {endereco})
         avaliacao = data['avaliacao']
-        query = f"INSERT INTO autonomo VALUES (0,'" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + str(foto) + "," + str(plano) + ", '" + str(categoria) + "', " + str(preco) + ", " + str(pedidos) + ", '" + str(descricao) + "'," + str(avaliacao) + ")" 
+        query = f"INSERT INTO autonomo ('nome','email','senha','datanasc','cpf','tel','foto', 'plano','categoria','preco', 'pedidos', 'descricao','avaliacao') VALUES ('" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + str(foto) + "," + str(plano) + ", '" + str(categoria) + "', " + str(preco) + ", " + str(pedidos) + ", '" + str(descricao) + "'," + str(avaliacao) + ")" 
         db.session.execute(query)
         db.session.commit()
     except Exception as erro:
