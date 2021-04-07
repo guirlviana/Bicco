@@ -32,7 +32,7 @@ def cadastrar_autonomo():
         avaliacao = data['avaliacao']
         query = f"INSERT INTO autonomo VALUES (0,'" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + str(foto) + "," + str(plano) + ", '" + str(categoria) + "', " + str(preco) + ", " + str(pedidos) + ", '" + str(descricao) + "'," + str(avaliacao) + ")" 
         db.session.execute(query)
-        db.commit()
+        db.session.commit()
     except Exception as erro:
         print(erro)
         response = {"mensagem": "nao foi possivel cadastrar autonomo"}
