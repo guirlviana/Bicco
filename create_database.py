@@ -13,6 +13,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)  # Instancia o sqlalchemy usando as configurações acima
 db: SQLAlchemy
 
+TABLE_ID = db.Sequence('table_id_seq', start=1)
+
+
 class Cliente(db.Model):
     __tablename__ = 'cliente'
     cliente_id = db.Column(db.Integer, db.Sequence(
@@ -30,7 +33,7 @@ class Cliente(db.Model):
 
 class Autonomo(db.Model):
     __tablename__ = 'autonomo'
-    autonomo_id = db.Column(db.Integer, db.Sequence("autonomo_id_aut", start=1, for_update=True), primary_key=True)
+    autonomo_id = db.Column(db.Integer, primary_key=True, server_default=TABLE_ID.next_value())
     nome = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     senha = db.Column(db.String)
