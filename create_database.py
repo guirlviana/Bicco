@@ -23,7 +23,7 @@ class Cliente(db.Model):
     dataNasc = db.Column(db.String)
     cpf = db.Column(db.String, unique=True)
     telefone = db.Column(db.String)
-    foto = db.Column(db.LargeBinary)
+    foto = db.Column(db.String)
     
     
 
@@ -38,7 +38,7 @@ class Autonomo(db.Model):
     dataNasc = db.Column(db.String)
     cpf = db.Column(db.String, unique=True)
     telefone = db.Column(db.String)
-    foto = db.Column(db.LargeBinary)
+    foto = db.Column(db.String)
     plano = db.Column(db.Integer)
     categoria = db.Column(db.String)
     valorhora = db.Column(db.Float)
@@ -51,7 +51,7 @@ class Portfolio(db.Model):
     portfolio_id = db.Column(db.Integer, db.Sequence(
         'portfolio_id_auto_incremento', start=1), primary_key=True)
     id_usuario = db.Column(db.Integer)
-    foto = db.Column(db.LargeBinary)
+    foto = db.Column(db.String)
 
 class Classificacao(db.Model):
     __tablename__ = 'classificacao'
