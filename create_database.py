@@ -30,7 +30,7 @@ class Cliente(db.Model):
 
 class Autonomo(db.Model):
     __tablename__ = 'autonomo'
-    autonomo_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    autonomo_id = db.Column(db.Integer, db.Sequence("autonomo_id_aut", start=1, for_update=True), primary_key=True)
     nome = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     senha = db.Column(db.String)
