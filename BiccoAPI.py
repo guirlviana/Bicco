@@ -28,7 +28,7 @@ def cadastrar_autonomo():
         categoria = str(data['categoria'] )
         preco = data['preco'] 
         pedidos = data['pedidos'] 
-        descricao = str(data['descricao'] )
+        descricao = str(data['descricao'] ) # INSERT INTO TABELA VALUES ({nome}, {endereco})
         avaliacao = data['avaliacao']
         query = f"INSERT INTO autonomo VALUES (NEWID(), '" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + str(foto) + "," + str(plano) + ", '" + str(categoria) + "', " + str(preco) + ", " + str(pedidos) + ", '" + str(descricao) + "'," + str(avaliacao) + ")" 
         db.session.execute(query)
