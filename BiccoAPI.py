@@ -125,10 +125,18 @@ def cadastrar_cliente():
 
 # # VISUALIZAR - TODOS AUTONOMOS
 
-# @app.route("/ver/todos", methods=['GET'])
-# def ver_todos():
-#     response = dbAutonomo.mostrar_todos_autonomos()
-#     return jsonify(response)
+@app.route("/ver/todos", methods=['GET'])
+def ver_todos():
+    
+    try:
+        response = Autonomo.query.all()
+        for autonomo in response:
+            print(autonomo.cpf, autonomo.nome)    
+    except Exception:
+        response = {"status": False}
+    else:
+        response = {"status": True}
+    return jsonify(response)
 
 # @app.route("/avaliacao/adicionar", methods=['POST'])
 # def adicionar_avaliacao():
