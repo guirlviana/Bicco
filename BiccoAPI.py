@@ -1,9 +1,8 @@
 from flask import Flask, jsonify
 from flask.globals import request
 import os
-from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from create_database import Autonomo
+from create_database import Autonomo, Cliente, Portfolio, Classificacao
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
@@ -29,32 +28,39 @@ def cadastrar_autonomo():
         novo_autonomo.categoria = str(data['categoria'] )
         novo_autonomo.valorHora = data['preco'] 
         novo_autonomo.pedidos = data['pedidos'] 
-        novo_autonomo.descricao = str(data['descricao'] ) # INSERT INTO TABELA VALUES ({nome}, {endereco})
+        novo_autonomo.descricao = str(data['descricao'] )
         novo_autonomo.classificacao = data['avaliacao']
-        # query = f"INSERT INTO autonomo VALUES ('" + str(nome) + "', '" + str(email) + "', '" + str(senha) + "', " + str(datanasc) + ", '" + str(cpf) + "', '" + str(tel) + "', " + str(foto) + "," + str(plano) + ", '" + str(categoria) + "', " + str(preco) + ", " + str(pedidos) + ", '" + str(descricao) + "'," + str(avaliacao) + ")" 
-        # db.session.execute(query)
         db.session.add(novo_autonomo)
         db.session.commit()
         
-    except Exception as erro:
-        print(erro)
-        response = {"mensagem": "nao foi possivel cadastrar autonomo"}
+    except Exception:
+        response = {"status": False}
     
     else:
-        response = {"mensagem": "autonomo cadastrado com sucesso"}
+        response = {"status": True}
 
     return jsonify(response)
 
-# @app.route("/cadastrar/cliente", methods=['POST'])
-# def cadastrar_cliente():
-#     data = request.get_json()
+@app.route("/cadastrar/cliente", methods=['POST'])
+def cadastrar_cliente():
+    data = request.get_json()
+    try:
+        novo_cliente = Cliente()
+        novo_cliente.nome = str(data['nome'])
+        novo_cliente.email = str(data['email'])
+        novo_cliente.senha = str(data['senha'] )
+        novo_cliente.dataNasc = str(data['datanasc'])
+        novo_cliente.cpf = str(data['cpf'])
+        novo_cliente.telefone = str(data['tel'] ) 
+        novo_cliente.foto = str(data['foto'])
+        db.session.add(novo_cliente)
+        db.session.commit()
+    except Exception:
+        response = {"status": False}
+    else:
+        response = {"status": True}
     
-#     response = dbCliente.cadastrar_cliente(nome=data['nome'],email=data['email'], 
-#                                             senha=data['senha'],datanasc=data['datanasc'],
-#                                             cpf=data['cpf'],tel=data['tel'],
-#                                             foto=data['foto'])
-                                            
-#     return jsonify(response)
+    return jsonify(response)
 
 # # LOGIN
 
