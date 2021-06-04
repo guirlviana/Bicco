@@ -136,6 +136,7 @@ def portfolio_deletar():
     return jsonify(response)
 
 if __name__ == "__main__":
+    
     dbAutonomo = AutonomoBICCO(path=pathbd)
     dbCliente = ClienteBICCO(path=pathbd)
     port = int(os.environ.get("PORT", 5000))
