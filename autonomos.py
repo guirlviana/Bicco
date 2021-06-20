@@ -70,7 +70,7 @@ class AutonomoBICCO():
                             "valorHora": user[10],
                             "pedidos": user[11],
                             "descricao": user[12],
-                            "avaliação": user[13]
+                            "avaliacao": user[13]
                         }
                         store_user.append(data.copy())
                 result.append(store_user.copy())
