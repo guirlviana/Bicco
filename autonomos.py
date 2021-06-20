@@ -14,9 +14,9 @@ class AutonomoBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        return {"acesso": True, "email": f"{linha[1]}", "senha": f"{linha[2]}", "ID": linha[0]}
+                        return {"acesso": True, "email": f"{linha[1]}", "senha": f"{linha[2]}", "id": linha[0]}
             else:
-                return {"acesso": False, "email": "", "senha": "", "ID": 0}
+                return {"acesso": False, "email": "", "senha": "", "id": 0}
 
     def cadastrar_autonomo(self, nome, email, senha, datanasc, cpf, tel, foto, plano, categoria, preco, pedidos, descricao, avaliacao):
         try:
