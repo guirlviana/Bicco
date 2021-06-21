@@ -12,10 +12,10 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel cadastrar cliente"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "cliente cadastrado com sucesso"}
+            return {"mensagem": "sucesso"}
     
     def editar_cliente(self, id, nome, email, senha, datanasc, tel, foto):
         try:
@@ -25,9 +25,9 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel alterar dados do cliente"}            
+            return {"mensagem": "error"}            
         else:
-            return {"mensagem": "dados do cliente alterados com sucesso"}
+            return {"mensagem": "sucesso"}
             
       
     def mostrar_cliente_individual(self, id):
@@ -88,11 +88,11 @@ class ClienteBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "Não foi possivel exluir cliente"}
+            return {"mensagem": "error"}
             
         
         else:
-            return {"mensagem": "cliente excluido com sucesso"}
+            return {"mensagem": "sucesso"}
             
 
     

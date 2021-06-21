@@ -26,10 +26,10 @@ class AutonomoBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel cadastrar autonomo"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "autonomo cadastrado com sucesso"}
+            return {"mensagem": "sucesso"}
             
     
     def editar_autonomo(self, id, nome, email, senha, datanasc, tel, foto, categoria, preco, descricao):
@@ -40,10 +40,10 @@ class AutonomoBICCO():
                 cursor.execute(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel alterar dados do autonomo"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "dados do autonomo alterados com sucesso"}
+            return {"mensagem": "sucesso"}
             
 
     def mostrar_todos_autonomos(self):
@@ -87,10 +87,10 @@ class AutonomoBICCO():
                 cursor.executescript(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel cadastrar avaliacao ao perfil do autonomo"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "avaliacao ao perfil do autonomo cadastrada com sucesso"}
+            return {"mensagem": "sucesso"}
             
     def adicionar_portfolio(self, id, foto):
         try:
@@ -100,10 +100,10 @@ class AutonomoBICCO():
                 cursor.executescript(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel adicionar foto"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "foto adicionada com sucesso"}
+            return {"mensagem": "sucesso"}
         
     def deletar_portfolio(self, id, foto):
         try:
@@ -113,10 +113,10 @@ class AutonomoBICCO():
                 cursor.executescript(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel deletar foto"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "foto deletada com sucesso"}
+            return {"mensagem": "sucesso"}
     
     def contar_imagens_portfolio(self, id_usuario):
         with sqlite3.connect(self.db, check_same_thread=False) as con:
@@ -191,8 +191,8 @@ class AutonomoBICCO():
                 cursor.executescript(query)
                 con.commit()
         except Exception:
-            return {"mensagem": "nao foi possivel exluir autonomo"}
+            return {"mensagem": "error"}
             
         else:
-            return {"mensagem": "autonomo excluindo com sucesso"}
+            return {"mensagem": "sucesso"}
             
