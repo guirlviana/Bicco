@@ -40,7 +40,6 @@ class ClienteBICCO():
                 for linha in result:
                     if linha:
                         return {
-                            "acesso": True,
                             "id": linha[0],
                             "nome": linha[1],
                             "email": linha[2],
@@ -53,7 +52,6 @@ class ClienteBICCO():
                         }
             else:
                 return {
-                    "acesso": False,
                     "id": None,
                     "nome": None,
                     "email": None,

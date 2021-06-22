@@ -157,8 +157,7 @@ class AutonomoBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        return {
-                            "acesso": True,
+                        return {                            
                             "id": linha[0],
                             "nome": linha[1],
                             "email": linha[2],
@@ -170,8 +169,7 @@ class AutonomoBICCO():
                             "plano": linha[8],
                         }
             else:
-                return {
-                    "acesso": False,
+                return {                    
                     "id": None,
                     "nome": None,
                     "email": None,
