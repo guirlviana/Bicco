@@ -69,13 +69,13 @@ def editar_cliente():
 
 # DELETAR
 
-@app.route("/deletar/autonomo",methods=['DELETE'])
+@app.route("/deletar/autonomo",methods=['POST'])
 def deletar_autonomo():
     data = request.get_json()
     response = dbAutonomo.excluir_autonomo(data['id'])
     return jsonify(response)
 
-@app.route("/deletar/cliente",methods=['DELETE'])
+@app.route("/deletar/cliente",methods=['POST'])
 def deletar_cliente():
     data = request.get_json()
     response = dbCliente.excluir_cliente(data['id'])
@@ -129,7 +129,7 @@ def portfolio_adicionar():
     response = dbAutonomo.adicionar_portfolio(id=data['id'], foto=data['foto'])
     return jsonify(response)
 
-@app.route("/portfolio/deletar", methods=['DELETE'])
+@app.route("/portfolio/deletar", methods=['POST'])
 def portfolio_deletar():
     data = request.get_json()
     response = dbAutonomo.deletar_portfolio(id=data['id'], foto=data['foto'])
