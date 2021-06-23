@@ -73,10 +73,10 @@ class ClienteBICCO():
             if len(result) != 0:
                 for linha in result:
                     if linha:
-                        return {"acesso": True, "email": f"{linha[1]}", "senha": f"{linha[2]}", "ID": linha[0]}
+                        return {"acesso": "true", "email": f"{linha[1]}", "senha": f"{linha[2]}", "ID": linha[0]}
                         
             else:
-                return {"acesso": False, "email": "", "senha": "", "ID": 0}
+                return {"acesso": "false", "email": "", "senha": "", "ID": 0}
 
     def excluir_cliente(self, id):
         try:
