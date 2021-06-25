@@ -99,8 +99,8 @@ class AutonomoBICCO():
                 query = f"INSERT INTO Portfolio VALUES ({id}, {foto});"
                 cursor.executescript(query)
                 con.commit()
-        except Exception:
-            return {"mensagem": "error"}
+        except Exception as err:
+            return {"mensagem": f"{err}"}
             
         else:
             return {"mensagem": "sucesso"}
