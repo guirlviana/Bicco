@@ -22,7 +22,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone','Foto', 'Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', {foto}, {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
+                query = f"INSERT INTO autonomo ('Nome','email','senha','DataNasc','CPF','telefone','Foto', 'Plano','categoria','ValorHora', 'Pedidos', 'Descricao','Classificacao') VALUES ('{nome}', '{email}', '{senha}', '{datanasc}', '{cpf}', '{tel}', '{foto}', {plano}, '{categoria}', {preco}, {pedidos}, '{descricao}', {avaliacao})" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
@@ -36,7 +36,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"UPDATE autonomo SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','DataNasc' = '{datanasc}','telefone' = '{tel}', 'Foto' = {foto} ,'categoria' = '{categoria}','ValorHora' = {preco}, 'Descricao'= '{descricao}' WHERE id = {id};" 
+                query = f"UPDATE autonomo SET 'Nome' = '{nome}','email' = '{email}','senha' = '{senha}','DataNasc' = '{datanasc}','telefone' = '{tel}', 'Foto' = '{foto}' ,'categoria' = '{categoria}','ValorHora' = {preco}, 'Descricao'= '{descricao}' WHERE id = {id};" 
                 cursor.execute(query)
                 con.commit()
         except Exception:
@@ -96,7 +96,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO Portfolio VALUES ({id}, {foto});"
+                query = f"INSERT INTO Portfolio ('id_usuario','Foto') VALUES ({id}, '{foto}');"
                 cursor.executescript(query)
                 con.commit()
         except Exception as err:
@@ -109,7 +109,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"DELETE FROM portfolio WHERE foto = {foto} AND id_usuario = {id};"
+                query = f"DELETE FROM portfolio WHERE foto = '{foto}' AND id_usuario = {id};"
                 cursor.executescript(query)
                 con.commit()
         except Exception:
