@@ -99,8 +99,8 @@ class AutonomoBICCO():
                 query = f"INSERT INTO Portfolio ('id_usuario','Foto') VALUES ({id}, '{foto}');"
                 cursor.executescript(query)
                 con.commit()
-        except Exception as err:
-            return {"mensagem": f"{err}"}
+        except Exception:
+            return {"mensagem": "error"}
             
         else:
             return {"mensagem": "sucesso"}
@@ -162,11 +162,17 @@ class AutonomoBICCO():
                             "nome": linha[1],
                             "email": linha[2],
                             "senha": linha[3],
-                            "dataNasc": linha[4],
+                            "datanasc": linha[4],
                             "cpf": linha[5],
                             "tel": linha[6],
                             "foto": linha[7],
                             "plano": linha[8],
+                            "categoria": linha[9],
+                            "preco": linha[10],
+                            "pedidos": linha[11],
+                            "descricao": linha[12],
+                            "avaliacao": linha[13],
+                            
                         }
             else:
                 return {                    
