@@ -135,6 +135,30 @@ def portfolio_deletar():
     response = dbAutonomo.deletar_portfolio(id=data['id'], foto=data['foto'])
     return jsonify(response)
 
+@app.route("/senha/autonomo/definir", methods=['POST'])
+def definir_senha_autonomo():
+    data = request.get_json()
+    response = dbAutonomo.definir_senha(id=data['id'],sequencia=data['sequencia'])
+    return jsonify(response)
+
+@app.route("/senha/cliente/definir", methods=['POST'])
+def definir_senha_autonomo():
+    data = request.get_json()
+    response = dbCliente.definir_senha(id=data['id'],sequencia=data['sequencia'])
+    return jsonify(response)
+
+@app.route("/senha/autonomo/recuperar", methods=['POST'])
+def definir_senha_autonomo():
+    data = request.get_json()
+    response = dbAutonomo.recuperar_senha(data['senha'])
+    return jsonify(response)
+
+@app.route("/senha/cliente/recuperar", methods=['POST'])
+def definir_senha_autonomo():
+    data = request.get_json()
+    response = dbCliente.recuperar_senha(data['senha'])
+    return jsonify(response)
+
 if __name__ == "__main__":    
     dbAutonomo = AutonomoBICCO(path=pathbd)
     dbCliente = ClienteBICCO(path=pathbd)

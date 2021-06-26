@@ -199,4 +199,35 @@ class AutonomoBICCO():
             
         else:
             return {"mensagem": "sucesso"}
+    
+    def definir_senha(self, id, sequencia):
+        try:
+            with sqlite3.connect(self.db, check_same_thread=False) as con:
+                cursor = con.cursor()
+                query = f"INSERT INTO RecuperarSenhaAutonomo ('id_usuario', 'sequencianumeral') VALUES ({id}, '{sequencia}');"
+                cursor.executescript(query)
+                con.commit()
+        except Exception:
+            return {"mensagem": "error"}
+            
+        else:
+            return {"mensagem": "sucesso"}
+    
+    def recuperar_senha(self, senha):
+        
+        with sqlite3.connect(self.db, check_same_thread=False) as con:
+            cursor = con.cursor()
+            query = f"SELECT * FROM RecuperarSenhaAutonomo WHERE sequencianumeral = '{senha}';"
+            cursor.executescript(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:
+                        return {"senha": f"{linha[2]}", "id": linha[0]}
+            else:
+                return {"senha": "", "id": 0}
+            
+        
+
+
             
