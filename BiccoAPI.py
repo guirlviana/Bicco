@@ -148,13 +148,13 @@ def definir_senha_autonomo():
     return jsonify(response)
 
 @app.route("/senha/autonomo/recuperar", methods=['POST'])
-def definir_senha_autonomo():
+def recuperar_senha_autonomo():
     data = request.get_json()
     response = dbAutonomo.recuperar_senha(data['senha'])
     return jsonify(response)
 
 @app.route("/senha/cliente/recuperar", methods=['POST'])
-def definir_senha_autonomo():
+def recuperar_senha_cliente():
     data = request.get_json()
     response = dbCliente.recuperar_senha(data['senha'])
     return jsonify(response)
