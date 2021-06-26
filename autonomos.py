@@ -217,12 +217,13 @@ class AutonomoBICCO():
         
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
-            query = f'SELECT id_usuario FROM recuperarSenhaAutonomo WHERE sequencianumeral = "{senha}";'
-            cursor.executescript(query)
-            result = cursor.fetchone()
-            print(f"RESULTADO {result}")
-            if result != 0:
-                return {"id": result}
+            query = f'SELECT id_usuario FROM recuperarsenhaautonomo WHERE sequencianumeral = "{str(senha)}";'
+            cursor.execute(query)
+            result = cursor.fetchall()
+            if len(result) != 0:
+                for linha in result:
+                    if linha:                        
+                        return {"id": linha[0]}
             else:
                 return {"id": 0}
             

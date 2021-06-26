@@ -106,15 +106,14 @@ class ClienteBICCO():
             return {"mensagem": "sucesso"}
     
     def recuperar_senha(self, senha):
-        
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
-            query = f'SELECT id_usuario FROM RecuperarSenhaCliente WHERE sequencianumeral = "{senha}";'
-            cursor.executescript(query)
+            query = f'SELECT id_usuario FROM recuperarsenhacliente WHERE sequencianumeral = "{str(senha)}";'
+            cursor.execute(query)
             result = cursor.fetchall()
             if len(result) != 0:
                 for linha in result:
-                    if linha:
+                    if linha:                        
                         return {"id": linha[0]}
             else:
                 return {"id": 0}
