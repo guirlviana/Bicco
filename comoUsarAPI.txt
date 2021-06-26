@@ -289,6 +289,66 @@ EXEMPLO
 
 ---------------------------------------------
 
+PARA DEFINIR SENHA DO AUTONOMO (ENVIAR UM JSON - POST)
+
+{
+    "id": 0,
+    "sequencia": ""
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+    "sequencia": "abc123"
+}
+
+---------------------------------------------
+
+PARA DEFINIR SENHA DO CLIENTE (ENVIAR UM JSON - POST)
+
+{
+    "id": 0,
+    "sequencia": ""
+}
+
+EXEMPLO
+
+{
+    "id": 1,
+    "sequencia": "abc123"
+}
+
+---------------------------------------------
+
+PARA RECUPERAR SENHA AUTONOMO (ENVIAR UM JSON - POST)
+
+{
+    "senha": ""
+}
+
+EXEMPLO
+
+{
+    "senha": "abc123"
+}
+
+---------------------------------------------
+
+PARA RECUPERAR SENHA CLIENTE (ENVIAR UM JSON - POST)
+
+{
+    "senha": ""
+}
+
+EXEMPLO
+
+{
+    "senha": "abc123"
+}
+
+---------------------------------------------
+
 ROTAS DA API BICCO
 
 # /cadastrar/autonomo 
