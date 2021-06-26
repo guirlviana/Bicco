@@ -204,7 +204,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f"INSERT INTO RecuperarSenhaAutonomo ('id_usuario', 'sequencianumeral') VALUES ({id}, '{sequencia}');"
+                query = f"INSERT INTO recuperarSenhaAutonomo ('id_usuario', 'sequencianumeral') VALUES ({id}, '{sequencia}');"
                 cursor.executescript(query)
                 con.commit()
         except Exception:
@@ -217,7 +217,7 @@ class AutonomoBICCO():
         
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
-            query = f'SELECT id_usuario FROM RecuperarSenhaAutonomo WHERE sequencianumeral = "{senha}";'
+            query = f'SELECT id_usuario FROM recuperarSenhaAutonomo WHERE sequencianumeral = "{senha}";'
             cursor.executescript(query)
             result = cursor.fetchone()
             print(f"RESULTADO {result}")
