@@ -109,7 +109,7 @@ class ClienteBICCO():
         
         with sqlite3.connect(self.db, check_same_thread=False) as con:
             cursor = con.cursor()
-            query = f"SELECT id_usuario FROM RecuperarSenhaCliente WHERE sequencianumeral = '{senha}';"
+            query = f'SELECT id_usuario FROM RecuperarSenhaCliente WHERE sequencianumeral = "{senha}";'
             cursor.executescript(query)
             result = cursor.fetchall()
             if len(result) != 0:
