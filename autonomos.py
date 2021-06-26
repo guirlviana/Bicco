@@ -219,13 +219,10 @@ class AutonomoBICCO():
             cursor = con.cursor()
             query = f'SELECT id_usuario FROM RecuperarSenhaAutonomo WHERE sequencianumeral = "{senha}";'
             cursor.executescript(query)
-            result = cursor.fetchall()
+            result = cursor.fetchone()
             print(f"RESULTADO {result}")
-            print(f"RESULTADO LEN {len(result)}")
-            if len(result) != 0:
-                for linha in result:
-                    if linha:
-                        return {"id": linha[0]}
+            if result != 0:
+                return {"id": result}
             else:
                 return {"id": 0}
             
