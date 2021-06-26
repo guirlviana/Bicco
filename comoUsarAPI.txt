@@ -314,6 +314,11 @@ ROTAS DA API BICCO
 # /portfolio/deletar 
 # /portfolio/ver 
 
+# /senha/autonomo/definir
+# /senha/cliente/definir
+# /senha/autonomo/recuperar
+# /senha/cliente/recuperar
+
 
 
 

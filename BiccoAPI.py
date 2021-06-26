@@ -142,7 +142,7 @@ def definir_senha_autonomo():
     return jsonify(response)
 
 @app.route("/senha/cliente/definir", methods=['POST'])
-def definir_senha_autonomo():
+def definir_senha_cliente():
     data = request.get_json()
     response = dbCliente.definir_senha(id=data['id'],sequencia=data['sequencia'])
     return jsonify(response)
