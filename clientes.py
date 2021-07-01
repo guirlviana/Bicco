@@ -118,5 +118,3 @@ class ClienteBICCO():
             else:
                 return {"id": 0}
             
-
-    
