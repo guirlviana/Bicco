@@ -191,7 +191,7 @@ class AutonomoBICCO():
         try:
             with sqlite3.connect(self.db, check_same_thread=False) as con:
                 cursor = con.cursor()
-                query = f'DELETE FROM Autonomo WHERE id = {id}; DELETE FROM Classificacao WHERE id_usuario = {id}; ; DELETE FROM Portfolio WHERE id_usuario = {id}; DELETE FROMrecuperarSenhaAutonomo WHERE id_usuario = {id};'
+                query = f'DELETE FROM Autonomo WHERE id = {id}; DELETE FROM Classificacao WHERE id_usuario = {id}; ; DELETE FROM Portfolio WHERE id_usuario = {id}; DELETE FROM recuperarSenhaAutonomo WHERE id_usuario = {id};'
                 cursor.executescript(query)
                 con.commit()
         except Exception:
